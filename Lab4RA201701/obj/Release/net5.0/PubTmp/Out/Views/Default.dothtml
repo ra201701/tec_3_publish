@@ -1,0 +1,81 @@
+﻿@viewModel Lab4RA201701.ViewModels.DefaultViewModel, Lab4RA201701
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+    <h1 align="center">
+        <!--<img src="UserIcon.png" width="20%" height="20%" />-->
+        <br />
+        <b>{{value: Title}}</b>
+    </h1>
+
+    <div align="center">
+        <bp:Window IsDisplayed="{value: IsWindowDisplayed}"
+                   HeaderText="Form"
+                   CloseOnEscape="false"
+                   CloseOnOutsideClick="false">
+
+            <h1 align="center"><p><b>Pearson Form</b>.</p></h1>
+
+            <div Validator.Value="{value: Person.Username}"
+                 Validator.InvalidCssClass="has-error"
+                 Validator.SetToolTipText="true"
+                 class="page-input-box">
+                <b>Username:</b>
+                <br />
+                <bp:TextBox Text="{value: Person.Username}"
+                            UpdateTextAfterKeydown="true"
+                            Type="Normal"
+                            Placeholder="Insert your username..."
+                            AutoFocus="true"
+                            style="width: 80%;" />
+            </div>
+
+
+            <div Validator.Value="{value: Person.EnrollmentDate}"
+                 Validator.InvalidCssClass="has-error"
+                 Validator.SetToolTipText="true"
+                 class="page-input-box">
+                <b>EnrollmentDate:</b>
+                <br />
+                <bp:DateTimePicker SelectedDateTime="{value: Person.EnrollmentDate}"
+                                   HourText="Hours"
+                                   MinuteText="Minutes"
+                                   SecondText="Seconds"
+                                   AmPmDesignatorText="AM/PM"
+                                   style="width: 80%;" />
+            </div>
+
+            <div Validator.Value="{value: Person.EnrollmentDate}"
+                 Validator.InvalidCssClass="has-error"
+                 Validator.SetToolTipText="true"
+                 class="page-input-box">
+                <b>Gender:</b>
+                <br />
+                <bp:RadioButton CheckedItem="{value: Person.Gender}"
+                                CheckedValue="Male" Text="Male" />
+                <bp:RadioButton CheckedItem="{value: Person.Gender}"
+                                CheckedValue="Female" Text="Female" />
+            </div>
+
+            <b>About:</b>
+            <br />
+            <bp:TextBox Text="{value: Person.About}"
+                        Type="MultiLine"
+                        Placeholder="Enter information about you..."
+                        class="page-input" style="width: 80%;" />
+            <br/>
+            <b>Profile Picture:</b>
+            <br />
+
+            <bp:FileUpload Data="{value: ProfilePicture}"
+                           AllowMultipleFiles="false"
+                           UploadCompleted="{command: ProcessFile()}"
+                           class="page-input" style="width: 80%;" />
+
+            <bp:Button Text="Process" Click="{command: Process()}" style="width: 80%;" />
+
+        </bp:Window>
+
+        <bp:Button Text="Crear Persona" Click="{command: IsWindowDisplayed = true}" />
+    </div>
+</dot:Content>
